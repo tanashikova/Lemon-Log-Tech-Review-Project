@@ -7,7 +7,7 @@ from .forms import UserRegisterForm
 
 
 def home(request):
-  return render(request, )
+  return render(request, 'home.html' )
 
 def about(request):
   return render(request, 'about.html')
