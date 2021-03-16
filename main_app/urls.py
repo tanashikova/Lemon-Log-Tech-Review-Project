@@ -7,4 +7,6 @@ urlpatterns = [
      path('products/', views.products_index, name='index'),
      path('profile/', views.profile, name='profile'),
      path('register/', views.register, name='register'),
+     # path('review/<>')
 ]
+
