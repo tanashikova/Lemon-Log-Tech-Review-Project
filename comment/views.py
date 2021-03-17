@@ -1,13 +1,11 @@
 from django.shortcuts import render
-from .models import Comment
+
 
 
 def home(request):
-    context = {
-        'comments': Comment.objects.all()
-    }
-    return render(request, 'home.html', context)
+    
+    return render(request, 'home.html')
 
 
 def about(request):
-    return render(request, 'about.html', {'title': 'About'})
+    return render(request, 'about.html')
