@@ -17,15 +17,13 @@
     <header class="site-header">
       <nav class="navbar navbar-expand-md fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="{% url 'comment-home' %}">Lemon Log</a>
-          {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-          </button> {% endcomment %}
+          <a class="navbar-brand mr-4" href="{% url 'home' %}">Lemon Log</a>
           <ul class="right">
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <li><a class="nav-item nav-link" href="{% url 'comment-home' %}">Home</a></li>
-              <li><a class="nav-item nav-link" href="{% url 'comment-about' %}">About</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'home' %}">Home</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'about' %}">About</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'index' %}">View Reviews</a></li>
             </div>
              <div class="navbar-nav">
               {% if user.is_authenticated %}
