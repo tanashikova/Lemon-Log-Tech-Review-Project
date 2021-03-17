@@ -1,38 +1,41 @@
-{% extends "base.html" %}
-{% load crispy_forms_tags %}
+{% extends "base.html" %} 
+{% load crispy_forms_tags %} 
 {% block content %}
-    <div class="content-section">
-      <div class="media">
-        <img class="account-img" src="{{ user.profile.image.url }}">
-        <div class="media-body">
-          <h2 class="account-heading">{{ user.username }}</h2>
-          <p class="text-secondary">{{ user.profile.join_date }}</p>
-        </div>
-      </div>
-      <form method="POST" enctype="multipart/form-data">
-          {% csrf_token %}
-          <fieldset class="form-group">
-              <legend class="border-bottom mb-4">Profile Info</legend>
-              {{ user_form|crispy }}
-              {{ profile_form|crispy }}
-          </fieldset>
-          <div class="form-group">
-              <button class="btn btn-outline-info" type="submit">Update</button>
-          </div>
-      </form>
-      {% for comment in comments %}
-        <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ comment.author }}</a>
-              <small class="text-muted">{{ comment.date_commented }}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{ comment.title }}</a></h2>
-            <p class="article-content">{{ comment.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
+<div class="content-section">
+  <div class="media">
+    <img class="account-img" src="{{ user.profile.image.url }}" />
+    <div class="media-body">
+      <h2 class="account-heading">{{ user.username }}</h2>
+      <p class="text">{{ user.profile.join_date }}</p>
     </div>
-    
+  </div>
+  <form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    <fieldset class="form-group">
+      <div class="border-bottom mb-4">{{ user.username }} profile info</div>
+      {{ user_form|crispy }} 
+      {{ profile_form|crispy }}
+    </fieldset>
+    <div class="form-group">
+      <button class="btn btn-light" type="submit">Update</button>
+    </div>
+  </form>
+  {% for comment in comments %}
+  <article class="media content-section">
+    <img
+      class="rounded-circle article-img"
+      src="{{ comment.author.profile.image.url }}"
+    />
+    <div class="media-body">
+      <div class="article-metadata">
+        <a class="mr-2" href="#">{{ comment.author }}</a>
+        <small class="text-muted">{{ comment.date_commented }}</small>
+      </div>
+      <h2><a class="article-title" href="#">{{ comment.title }}</a></h2>
+      <p class="article-content">{{ comment.content }}</p>
+    </div>
+  </article>
+  {% endfor %}
+</div>
+
 {% endblock content %}

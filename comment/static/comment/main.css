@@ -83,7 +83,7 @@ body {
   .account-heading {
     font-size: 2.5rem;
   }
-.btn-outline-info {
+.btn-light{
   background-color:#fdd835;
   border: none;
   color:black
