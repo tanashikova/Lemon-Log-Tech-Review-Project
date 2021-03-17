@@ -17,7 +17,7 @@
           <p>Manufacturing Year: {{ review.rating }}</p>
         </div> 
         <div class="card-action">
-          <a href="#">View full review!</a>
+          <a href="{% url 'detail' review.id %}">
         </div>
       </div>
     </div>

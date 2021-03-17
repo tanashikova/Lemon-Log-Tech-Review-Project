@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h1> Detail </h1>
+
+<div class="card">
+  <div class="card-content">
+   <span class="card-title">{{ review.title }}</span>
+          <p>Brand: {{ review.product }}</p>
+          <p>Description: {{ review.description }}</p>
+          <p>Manufacturing Year: {{ review.rating }}</p>
+  </div>
+</div>
+{% endblock %}
