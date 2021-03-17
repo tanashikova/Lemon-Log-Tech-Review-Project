@@ -1,0 +1,67 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{% static 'comment/main.css' %}">
+
+    {% if title %}
+        <title>Lemon Log - {{ title }}</title>
+    {% else %}
+        <title>Lemon Log</title>
+    {% endif %}
+</head>
+<body>
+    <header class="site-header">
+      <nav class="navbar navbar-expand-md fixed-top">
+        <div class="container">
+          <a class="navbar-brand mr-4" href="{% url 'comment-home' %}">Lemon Log</a>
+          {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+          </button> {% endcomment %}
+          <ul class="right">
+          <div class="collapse navbar-collapse" id="navbarToggle">
+            <div class="navbar-nav mr-auto">
+              <li><a class="nav-item nav-link" href="{% url 'comment-home' %}">Home</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'comment-about' %}">About</a></li>
+            </div>
+             <div class="navbar-nav">
+              {% if user.is_authenticated %}
+                <li><a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a></li>
+                <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
+              {% else %}
+                <li><a class="nav-item nav-link" href="{% url 'login' %}">Login</a></li>
+                <li><a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a></li>
+              {% endif %}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </nav>
+    </header>
+      <main class="container">
+         {% block content %}
+         {% endblock %}
+      </main>
+       <div role="main" class="container">
+      <div class="row">
+        <div class="col-md-12">
+          {% if messages %}
+            {% for message in messages %}
+              <div class="alert alert-{{ message.tags }}">
+                {{ message }}
+              </div>
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+    <div class="page-footer left">
+      <div class="container">
+       © 2021 The Lemon Log 3 • All rights reserved
+    </div>
+   </div>
+</body>
+</html>
