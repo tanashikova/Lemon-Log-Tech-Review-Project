@@ -5,8 +5,9 @@
 <h3>Here's a list of the latest reviews!</h3>
 
 {% for review in reviews %}
-  <div class="row">
+  {% comment %} <div class="row"> {% endcomment %}
       <div class="card">
+        <a href="{% url 'review_detail' review.id %}">
         <div class="card-image">
           <img src="images/sample-1.jpg">
         </div>
@@ -17,10 +18,10 @@
           <p>Manufacturing Year: {{ review.rating }}</p>
         </div> 
         <div class="card-action">
-          <a href="{% url 'detail' review.id %}">
         </div>
-      </div>
     </div>
+      {% comment %} </div> {% endcomment %}
+        </a>
 {% endfor %}
 
 {% endblock %}
