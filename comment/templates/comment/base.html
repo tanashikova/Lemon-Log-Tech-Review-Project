@@ -10,37 +10,42 @@
     {% if title %}
         <title>Lemon Log - {{ title }}</title>
     {% else %}
-        <title>Lemong Log</title>
+        <title>Lemon Log</title>
     {% endif %}
 </head>
 <body>
     <header class="site-header">
-      <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+      <nav class="navbar navbar-expand-md fixed-top">
         <div class="container">
           <a class="navbar-brand mr-4" href="{% url 'comment-home' %}">Lemon Log</a>
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+          {% comment %} <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
-          </button>
+          </button> {% endcomment %}
+          <ul class="right">
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="{% url 'comment-home' %}">Home</a>
-              <a class="nav-item nav-link" href="{% url 'comment-about' %}">About</a>
+              <li><a class="nav-item nav-link" href="{% url 'comment-home' %}">Home</a></li>
+              <li><a class="nav-item nav-link" href="{% url 'comment-about' %}">About</a></li>
             </div>
-            <!-- Navbar Right Side -->
              <div class="navbar-nav">
               {% if user.is_authenticated %}
-                <a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a>
-                <a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a>
+                <li><a class="nav-item nav-link" href="{% url 'profile' %}">Profile</a></li>
+                <li><a class="nav-item nav-link" href="{% url 'logout' %}">Logout</a></li>
               {% else %}
-                <a class="nav-item nav-link" href="{% url 'login' %}">Login</a>
-                <a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a>
+                <li><a class="nav-item nav-link" href="{% url 'login' %}">Login</a></li>
+                <li><a class="nav-item nav-link" href="{% url 'register' %}">Sign Up</a></li>
               {% endif %}
+              </ul>
             </div>
           </div>
         </div>
       </nav>
     </header>
-    <main role="main" class="container">
+      <main class="container">
+         {% block content %}
+         {% endblock %}
+      </main>
+       <div role="main" class="container">
       <div class="row">
         <div class="col-md-12">
           {% if messages %}
@@ -50,9 +55,13 @@
               </div>
             {% endfor %}
           {% endif %}
-          {% block content %}{% endblock %}
         </div>
       </div>
-    </main>
+    </div>
+    <div class="page-footer left">
+      <div class="container">
+       © 2021 The Lemon Log 3 • All rights reserved
+    </div>
+   </div>
 </body>
 </html>

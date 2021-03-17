@@ -12,8 +12,8 @@ body {
     margin: 0;
   }
   
-  .bg-steel {
-    background-color: #c2e610;
+  .fixed-top{
+    background-color: #fdd835;
   }
   
   .site-header .navbar-nav .nav-link {
@@ -34,7 +34,7 @@ body {
     border: 1px solid #dddddd;
     border-radius: 3px;
     margin-bottom: 20px;
-    width: 500px;
+    width: 100%;
   }
   
   .article-title {
@@ -82,4 +82,17 @@ body {
   
   .account-heading {
     font-size: 2.5rem;
+  }
+.btn-outline-info {
+  background-color:#fdd835;
+  border: none;
+  color:black
+}
+  .page-footer {
+    padding-top: 0;
+    text-align: right;
+    background-color:#fdd835;
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
   }

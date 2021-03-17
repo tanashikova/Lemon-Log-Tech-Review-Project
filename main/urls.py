@@ -5,4 +5,3 @@ urlpatterns = [
      path('products/', views.products_index, name='index'),
      # path('review/<>')
 ]
-

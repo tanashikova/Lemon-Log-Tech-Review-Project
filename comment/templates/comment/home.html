@@ -1,16 +1,26 @@
 {% extends "comment/base.html" %}
 {% block content %}
-    {% for comment in comments %}
-        <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ comment.author.profile.image.url }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ comment.author }}</a>
-              <small class="text-muted">{{ comment.date_commented }}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{ comment.title }}</a></h2>
-            <p class="article-content">{{ comment.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
-{% endblock content %}
+
+<h1 class="center">The Lemon Log!</h1>
+<span class="center">Your blogspot for the latest tech reviews!</span>
+ 
+{% for product in products %}
+  <div class="row">
+      <div class="card">
+        <div class="card-image">
+          <img src="images/sample-1.jpg">
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{ product.name }}</span>
+          <p>Brand: {{ product.brand }}</p>
+          <p>Description: {{ product.description }}</p>
+          <p>Manufacturing Year: {{ product.yr }}</p>
+        </div> 
+        <div class="card-action">
+          <a href="#">View full review!</a>
+        </div>
+      </div>
+    </div>
+{% endfor %} 
+
+{% endblock  %}
