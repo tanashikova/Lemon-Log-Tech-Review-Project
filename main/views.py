@@ -10,6 +10,8 @@ def about(request):
 
 def reviews_index(request):
   reviews = Review.objects.all()
-  print(reviews)
   return render(request, 'index.html', { 'reviews': reviews })
 
+def reviews_detail(request, review_id):
+  review = Review.objects.get(id=review_id)
+  return render(request, 'detail.html', {'review': review })
