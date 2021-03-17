@@ -4,5 +4,23 @@
 <h1 class="center">The Lemon Log!</h1>
 <span class="center">Your blogspot for the latest tech reviews!</span>
  
+{% for product in products %}
+  <div class="row">
+      <div class="card">
+        <div class="card-image">
+          <img src="images/sample-1.jpg">
+        </div>
+        <div class="card-content">
+          <span class="card-title">{{ product.name }}</span>
+          <p>Brand: {{ product.brand }}</p>
+          <p>Description: {{ product.description }}</p>
+          <p>Manufacturing Year: {{ product.yr }}</p>
+        </div> 
+        <div class="card-action">
+          <a href="#">View full review!</a>
+        </div>
+      </div>
+    </div>
+{% endfor %} 
 
 {% endblock  %}

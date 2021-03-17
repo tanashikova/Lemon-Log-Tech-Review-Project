@@ -7,7 +7,8 @@ from .forms import UserRegisterForm
 
 
 def home(request):
-  return render(request, 'home.html' )
+  products = Product.objects.all()
+  return render(request, 'home.html' , {"products": products })
 
 def about(request):
   return render(request, 'about.html')
