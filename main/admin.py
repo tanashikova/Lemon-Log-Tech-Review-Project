@@ -1,5 +1,19 @@
 from django.contrib import admin
-from .models import Review
+from . import models 
 
 # Register your models here
-admin.site.register(Review)
+@admin.register(models.Review)
+class UserAdmin(admin.ModelAdmin):
+    list_display = ('title', 'product', 'slug', 'user')
+    prepopulated_fields = {
+        "slug":("title",),
+    }
+
+
+@admin.register(models.Comment)
+class CommentAdmin(admin.ModelAdmin):
+    list_display = ('review', 'name', 'user', 'comment_date', 'status')
+    list_filter = ('status', 'comment_date')
+    search_fields = ('name', 'user', 'content')
+
+
