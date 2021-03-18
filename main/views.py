@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from .models import Review
-
+from .forms import NewCommentForm
 def home(request):
   reviews = Review.objects.all()
   return render(request, 'home.html' , {"reviews": reviews })
@@ -14,4 +14,18 @@ def reviews_index(request):
 
 def reviews_detail(request, review_id):
   review = Review.objects.get(id=review_id)
-  return render(request, 'detail.html', {'review': review })
+  comments = review.comments.filter()
+  user_comment = None
+  if request.method == 'POST':
+     comment_form = NewCommentForm(request.POST)
+     if comment_form.is_valid():
+        user_comment = comment.form.save(commit=False)
+        user_comment.review = review
+        user_comment.save()
+        return render(request, 'detail.html')
+  else:
+    comment_form = NewCommentForm()
+  return render(request, 'detail.html', {'review': review, 'comments':user_comment, 'comments':comments})
+
+
+       
