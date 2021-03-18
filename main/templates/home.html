@@ -5,9 +5,8 @@
 <span class="center">Your blogspot for the latest tech reviews!</span>
  
 {% for review in reviews %}
-  <div class="row">
+  <div class="column">
       <div class="card">
-        <a href="{% url 'review_detail' review.id %}">
         <div class="card-image">
           <img src="images/sample-1.jpg">
         </div>
@@ -19,9 +18,14 @@
         </div> 
         <div class="card-action">
         </div>
+        <form method="GET" action="{% url 'review_detail' review.id %}">
+          <button>
+            See the Full Review Here! 
+          </button>
+        </form>
     </div>
       </div>
-        </a>
 {% endfor %}
 
 {% endblock  %}
+
