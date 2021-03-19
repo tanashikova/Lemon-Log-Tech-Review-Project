@@ -18,13 +18,13 @@
               {{total_commnets}} comment{{total_comments|pluralize}}
             </h3>
             {% endwith %}
-            {% for comment in comments %}
+            {% for comment in comments%}
             Comment {{forloop.comment}} by {{comment.user}} on {{comment.comment_date}}
             {{comment.content|linebreaks}}
             {% empty %}
             <p>Be the first who comments on this review</p>
             {% endfor %}
-          <button class="btn btn-outline-info"><a href="" data-toggle="modal" data-target = "#Comment">Add Comment</a></button>
+          <a href="" data-toggle="modal" data-target = "#Comment">Add Comment</a>
           {% comment %} comment ends here {% endcomment %}
           <div class="modal" tabindex="-1" role="dialog" id="Comment">
               <div class="modal-dialog" role="document">
@@ -37,19 +37,20 @@
                   </div>
                   <div class="modal-body">
                     <div class="container"> 
-                        {% if user_comment %}
-                            <h2>Your comment has been added.</h2>
-                          {% else %}
-                            <form action="." method="post">
-                              {{ comment_form.as_p }}
-                              {% csrf_token %}
-                              <p><input type="submit" value="Post"></p>
-                            </form>
-                          {% endif %}
-                    </div>  
+                           {% if new_comment %}
+                              <h2>Your comment has been added.</h2>
+                            {% else %}
+                              <h2>Add a new comment</h2>
+                              <form action={% url 'review_detail' review.id%} method="post">
+                                {{ comment_form.as_p }}
+                                {% csrf_token %}
+                                <p><input type="submit" value="Add comment"></p>
+                              </form>
+                            {% endif %}
+                     </div>  
                   </div>
                 </div>
-              </div> 
+              </div>  
             </div>
         </div>
       </div>
