@@ -12,8 +12,8 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(models.Comment)
 class CommentAdmin(admin.ModelAdmin):
-    list_display = ('review', 'name', 'user', 'comment_date', 'status')
+    list_display = ('review', 'title', 'user', 'comment_date', 'status')
     list_filter = ('status', 'comment_date')
-    search_fields = ('name', 'user', 'content')
+    search_fields = ('title', 'user', 'content')
 
 
