@@ -1,6 +1,12 @@
 from django.shortcuts import render, redirect
-from .models import Review
+from .models import Review, Comment
 from .forms import NewCommentForm
+import uuid
+import boto3
+
+S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
+BUCKET = 'lemonlog3'
+
 def home(request):
   reviews = Review.objects.all()
   return render(request, 'home.html' , {"reviews": reviews })
@@ -27,5 +33,22 @@ def reviews_detail(request, review_id):
     comment_form = NewCommentForm()
   return render(request, 'detail.html', {'review': review, 'comments':user_comment, 'comments':comments})
 
-
+def add_photo(request, profile_id):
+    # photo-file will be the "name" attribute on the <input type="file">
+    photo_file = request.FILES.get('photo-file', None)
+    if photo_file:
+        s3 = boto3.client('s3')
+        # need a unique "key" for S3 / needs image file extension too
+        key = uuid.uuid4().hex[:6] + photo_file.name[photo_file.name.rfind('.'):]
+        # just in case something goes wrong
+        try:
+            s3.upload_fileobj(photo_file, BUCKET, key)
+            # build the full url string
+            url = f"{S3_BASE_URL}{BUCKET}/{key}"
+            # we can assign to cat_id or cat (if you have a cat object)
+            photo = Photo(url=url, review_id=review_id)
+            photo.save()
+        except:
+            print('An error occurred uploading file to S3')
+    return redirect('detail', review_id=review_id)
        

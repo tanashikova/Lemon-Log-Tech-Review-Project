@@ -7,10 +7,11 @@
 
 <div class="card">
   <div class="card-content">
+  <img src="" alt="">
    <span class="card-title">{{ review.title }}</span>
-          <p>Brand: {{ review.product }}</p>
+          <p>Product: {{ review.product }}</p>
           <p>Description: {{ review.description }}</p>
-          <p>Manufacturing Year: {{ review.rating }}</p>
+          <p>Rating: {{ review.rating }}</p>
           {% comment %} comment section {% endcomment %}
           <div class="col-md-12">
             {% with comments.count as total_comments %}
