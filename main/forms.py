@@ -4,9 +4,9 @@ from .models import Comment
 class NewCommentForm(forms.ModelForm):
     class Meta:
         model = Comment
-        fields = ('name', 'content')
+        fields = ('title', 'content')
         widgets = {
-            "name" : forms.TextInput(attrs={"class": "col-sm-12"}),
+            "title" : forms.TextInput(attrs={"class": "col-sm-12"}),
             "content" : forms.Textarea(attrs={"class": "form-control"}),
         }
        

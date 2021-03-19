@@ -24,7 +24,7 @@
             {% empty %}
             <p>Be the first who comments on this review</p>
             {% endfor %}
-          <a href="" data-toggle="modal" data-target = "#Comment">Add Comment</a>
+          <button class = "btn btn-outline-info" ><a href="" data-toggle="modal" data-target = "#Comment">Add Comment</a></button>
           {% comment %} comment ends here {% endcomment %}
           <div class="modal" tabindex="-1" role="dialog" id="Comment">
               <div class="modal-dialog" role="document">
@@ -37,16 +37,12 @@
                   </div>
                   <div class="modal-body">
                     <div class="container"> 
-                           {% if new_comment %}
-                              <h2>Your comment has been added.</h2>
-                            {% else %}
                               <h2>Add a new comment</h2>
                               <form action={% url 'review_detail' review.id%} method="post">
                                 {{ comment_form.as_p }}
                                 {% csrf_token %}
                                 <p><input type="submit" value="Add comment"></p>
                               </form>
-                            {% endif %}
                      </div>  
                   </div>
                 </div>
