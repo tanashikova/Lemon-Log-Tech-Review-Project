@@ -11,10 +11,3 @@ class Profile(models.Model):
 
     def __str__(self):
         return f'{self.user.username} Profile'
-
-class Photo(models.Model):
-    url = models.CharField(max_length=200)
-    review = models.ForeignKey(Profile, on_delete=models.CASCADE)
-
-    def __str__(self):
-        return f"Photo for review_id: {self.profile_id} @{self.url}"

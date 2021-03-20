@@ -1,5 +1,8 @@
 {% extends "base.html" %}
 {% block content %}
+{% load static %}
+
+<img src="{% static 'lemon-cropped.png' %}" alt="lemon">
 
 <h1 class="center">The Lemon Log!</h1>
 <span class="center">Your blogspot for the latest tech reviews!</span>
@@ -8,7 +11,9 @@
   <div class="row">
       <div class="card">
         <div class="card-image">
-          <img src="images/sample-1.jpg">
+        {% if review.image %}
+          <img src="{{ review.image }}">
+          {% endif %}
         </div>
         <div class="card-content">
           <span class="card-title">{{ review.title }}</span>

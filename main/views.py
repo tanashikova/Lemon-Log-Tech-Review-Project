@@ -1,5 +1,5 @@
-from django.shortcuts import render, redirect
-from .models import Review, Comment
+from django.shortcuts import render, redirect, HttpResponseRedirect
+from .models import Review, Comment, Photo
 from .forms import NewCommentForm
 import uuid
 import boto3
@@ -7,33 +7,8 @@ import boto3
 S3_BASE_URL = 'https://s3-us-west-1.amazonaws.com/'
 BUCKET = 'lemonlog3'
 
-def home(request):
-  reviews = Review.objects.all()
-  return render(request, 'home.html' , {"reviews": reviews })
 
-def about(request):
-  return render(request, 'about.html')
-
-def reviews_index(request):
-  reviews = Review.objects.all()
-  return render(request, 'index.html', { 'reviews': reviews })
-
-def reviews_detail(request, review_id):
-  review = Review.objects.get(id=review_id)
-  comments = review.comments.filter()
-  user_comment = None
-  if request.method == 'POST':
-     comment_form = NewCommentForm(request.POST)
-     if comment_form.is_valid():
-        user_comment = comment.form.save(commit=False)
-        user_comment.review = review
-        user_comment.save()
-        return render(request, 'detail.html')
-  else:
-    comment_form = NewCommentForm()
-  return render(request, 'detail.html', {'review': review, 'comments':user_comment, 'comments':comments})
-
-def add_photo(request, profile_id):
+def add_photo(request, review_id):
     # photo-file will be the "name" attribute on the <input type="file">
     photo_file = request.FILES.get('photo-file', None)
     if photo_file:
@@ -52,3 +27,39 @@ def add_photo(request, profile_id):
             print('An error occurred uploading file to S3')
     return redirect('detail', review_id=review_id)
        
+
+from django.contrib.auth.decorators import login_required
+# from django.urls import reverse
+def home(request):
+  reviews = Review.objects.all()
+  return render(request, 'home.html' , {"reviews": reviews })
+
+def about(request):
+  return render(request, 'about.html')
+@login_required
+def reviews_index(request):
+  reviews = Review.objects.all()
+  return render(request, 'index.html', { 'reviews': reviews })
+
+@login_required
+def reviews_detail(request, review_id):
+  review = Review.objects.get(id=review_id)
+  comment_form = NewCommentForm(request.POST or None)
+  comments = review.comments.filter(status=True)
+  user_comment = None
+  if request.POST and comment_form.is_valid():
+    user_comment = comment_form.save(commit=False)
+    user_comment.review = review
+    user_comment.user = request.user
+    user_comment.save()
+    return redirect('review_detail', review_id=review_id) 
+  else:
+    return render(request, 'detail.html', {'review':review, 'user_comment': user_comment, 'comments':comments, 'comment_form': comment_form})
+
+
+# <form action="{% url 'add_photo' review.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+#               {% csrf_token %}
+#               <input type="file" name="photo-file">
+#               <br><br>
+#               <input type="submit" class="btn" value="Upload Photo">
+#             </form>
