@@ -11,22 +11,18 @@
           <p>Brand: {{ review.product }}</p>
           <p>Description: {{ review.description }}</p>
           <p>Manufacturing Year: {{ review.rating }}</p>
+          </div>
+          </div>
           {% comment %} comment section {% endcomment %}
+          <hr>
           <div class="col-md-12">
             {% with comments.count as total_comments %}
             <h3>
               {{total_commnets}} comment{{total_comments|pluralize}}
+              {% comment %} adding comment starts {% endcomment %}
+              <button class = "btn btn-outline-info" ><a href="" data-toggle="modal" data-target = "#Comment">Add Comment</a></button>
             </h3>
-            {% endwith %}
-            {% for comment in comments%}
-            Comment {{forloop.comment}} by {{comment.user}} on {{comment.comment_date}}
-            {{comment.content|linebreaks}}
-            {% empty %}
-            <p>Be the first who comments on this review</p>
-            {% endfor %}
-          <button class = "btn btn-outline-info" ><a href="" data-toggle="modal" data-target = "#Comment">Add Comment</a></button>
-          {% comment %} comment ends here {% endcomment %}
-          <div class="modal" tabindex="-1" role="dialog" id="Comment">
+            <div class="modal" tabindex="-1" role="dialog" id="Comment">
               <div class="modal-dialog" role="document">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -38,16 +34,57 @@
                   <div class="modal-body">
                     <div class="container"> 
                               <h2>Add a new comment</h2>
-                              <form action={% url 'review_detail' review.id%} method="post">
+                              <form action={% url 'review_detail' review.id %} method="post">
                                 {{ comment_form.as_p }}
                                 {% csrf_token %}
                                 <p><input type="submit" value="Add comment"></p>
                               </form>
-                     </div>  
+                          </div>  
+                        </div>
+                      </div>
+                    </div>  
+                  </div>
+            {% comment %} adding comment ends {% endcomment %}
+            {% endwith %}
+            {% comment %} list of comments starts {% endcomment %}
+            {% for comment in comments%}
+            Comment {{forloop.comment}} by {{comment.user}} on {{comment.comment_date}} {{comment.title|linebreaks}}
+            {{comment.content|linebreaks}}
+            {% comment %} editing comments starts here {% endcomment %}
+            {% if user == comment.user %}
+            <a class="btn btn-outline" href="{% url 'edit' review.id comment.id %}">Edit</a>
+            {% comment %} deleting comments starts here {% endcomment %}
+             <a class="btn btn-outline" <a href="" data-toggle="modal" data-target = "#Delete">Delete</a>
+             <div class="modal" tabindex="-1" role="dialog" id="Delete">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-body">
+                     <form method="post"  action="{% url 'delete-comment' comment.id %}">
+                        {% csrf_token %}
+                        <fieldset class="form-group">
+                            <h2 class="border-bottom mb-4">Delete Post</h2>
+                            <h2>Are you sure you want to delete the post "{{ comment.title }}"</h2>
+                        </fieldset>
+                        <div class="form-group">
+                            <input type="submit" class="btn btn-outline-danger" value="Yes">
+                            <a class="btn btn-outline-secondary" href="{% url 'review_detail' comment.id %}">No</a>
+                        </div>
+                    </form>
                   </div>
                 </div>
               </div>  
             </div>
-        </div>
-      </div>
+            {% endif %}
+            {% comment %} deleting comments end here {% endcomment %}
+                  </div>
+                </div>
+              </div>  
+            </div>
+            <hr>
+            {% empty %}
+            <p>Be the first who comments on this review</p>
+            {% endfor %}
+            <hr>
+          {% comment %} comment ends here {% endcomment %}
+    
 {% endblock %}
