@@ -8,6 +8,6 @@ urlpatterns = [
      path('index/', views.reviews_index, name='index'),
      path('reviews/<int:review_id>/', views.reviews_detail, name="review_detail"),
      path('reviews/<int:review_id>/edit_comment/<int:comment_id>/edit/', views.edit_comment, name="edit"),
-     path('comment/<int:pk>/delete/', CommentDeleteView.as_view(), name='comment_delete'),
+     path('delete-comment/<int:pk>', CommentDeleteView.as_view(), name='delete-comment'),
      
 ]

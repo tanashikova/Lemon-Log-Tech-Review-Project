@@ -51,10 +51,11 @@ def edit_comment(request, review_id, comment_id):
 
 class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Comment
-    success_url = 'review_detail'
+    success_url = '/'
 
     def test_func(self):
-        comment = self.get_object()
-        if self.request.user == comment.user:
-            return True
-        return False
+      comment = self.get_object()
+      if self.request.user == comment.user:
+        return True
+      return False
+
