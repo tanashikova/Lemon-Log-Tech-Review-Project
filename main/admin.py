@@ -17,3 +17,4 @@ class CommentAdmin(admin.ModelAdmin):
     search_fields = ('title', 'user', 'content')
 
 
+

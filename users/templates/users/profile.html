@@ -13,6 +13,17 @@
           {% csrf_token %}
           <fieldset class="form-group">
               <legend class="border-bottom mb-4">Profile Info</legend>
+              {% comment %} {% for photo in profile.photo_set.all %}
+              <img class="responsive-img card-panel" src="{{photo.url}}">
+              {% empty %}
+              <div class="card-panel teal-text center-align">No Photos Uploaded</div>
+              {% endfor %}
+              <form action="{% url 'add_photo' profile.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
+              {% csrf_token %} {% endcomment %}
+                <input type="file" name="photo-file">
+              <br><br>
+                <input type="submit" class="btn" value="Upload Photo">
+              </form>
               {{ user_form|crispy }}
               {{ profile_form|crispy }}
           </fieldset>

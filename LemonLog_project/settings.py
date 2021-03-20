@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'pyuploadcare.dj',
 ]
 
 MIDDLEWARE = [
@@ -71,6 +72,10 @@ TEMPLATES = [
         },
     },
 ]
+UPLOADCARE = {
+    'pub_key': '5c7f2207e7f450ab0e94',
+    'secret': 'f8b78aa0e491def81c2c',
+}
 
 WSGI_APPLICATION = 'LemonLog_project.wsgi.application'
 
@@ -129,3 +134,4 @@ LOGIN_REDIRECT_URL = 'profile'
 LOGIN_URL = 'login'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')

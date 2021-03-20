@@ -7,21 +7,27 @@
 {% for review in reviews %}
   {% comment %} <div class="row"> {% endcomment %}
       <div class="card">
-        <a href="{% url 'review_detail' review.id %}">
         <div class="card-image">
-          <img src="images/sample-1.jpg">
+          {% if review.image %}
+          <img src="{{ review.image }}">
+          {% endif %}
         </div>
         <div class="card-content">
           <span class="card-title">{{ review.title }}</span>
           <p>Brand: {{ review.product }}</p>
           <p>Description: {{ review.description }}</p>
-          <p>Manufacturing Year: {{ review.rating }}</p>
+          <p>Rating: {{ review.rating }}</p>
         </div> 
         <div class="card-action">
         </div>
+        <form action="{% url 'review_detail' review.id %}" method="GET">
+          <button>
+            View the full review!
+          </button>
+        </form>
+
     </div>
       {% comment %} </div> {% endcomment %}
-        </a>
 {% endfor %}
 
 {% endblock %}
