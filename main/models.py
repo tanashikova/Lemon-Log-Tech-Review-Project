@@ -35,7 +35,7 @@ class Comment(models.Model):
     status = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ('comment_date',)
+        ordering = ('-comment_date',)
 
 
     def __str__(self):

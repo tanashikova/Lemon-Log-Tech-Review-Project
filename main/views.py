@@ -1,5 +1,12 @@
 from django.shortcuts import render, redirect, HttpResponseRedirect
+
 from .models import Review, Comment, Photo
+
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from .models import Review, Comment
+from django.views.generic import DeleteView
+
+
 from .forms import NewCommentForm
 import uuid
 import boto3
@@ -36,10 +43,14 @@ def home(request):
 
 def about(request):
   return render(request, 'about.html')
+
 @login_required
 def reviews_index(request):
   reviews = Review.objects.all()
   return render(request, 'index.html', { 'reviews': reviews })
+# def reviews_detail(request, review_id):
+#   reviews = Review.objects.get(id=review_id)
+#   return render(request, 'detail.html', { 'reviews': reviews })
 
 @login_required
 def reviews_detail(request, review_id):
@@ -57,9 +68,34 @@ def reviews_detail(request, review_id):
     return render(request, 'detail.html', {'review':review, 'user_comment': user_comment, 'comments':comments, 'comment_form': comment_form})
 
 
+
 # <form action="{% url 'add_photo' review.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
 #               {% csrf_token %}
 #               <input type="file" name="photo-file">
 #               <br><br>
 #               <input type="submit" class="btn" value="Upload Photo">
 #             </form>
+
+
+def edit_comment(request, review_id, comment_id):
+  review = Review.objects.get(id=review_id)
+  comment = Comment.objects.get(id=comment_id)
+  edit_form = NewCommentForm(request.POST or None, instance=comment)
+  if request.POST and edit_form.is_valid():
+    edit_form.save()
+    return redirect('review_detail', review_id = review_id)
+  else:
+    return render(request, 'edit.html',{'edit_form': edit_form, 'review':review, 'comment':comment })
+
+
+class CommentDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
+    model = Comment
+    success_url = '/'
+
+    def test_func(self):
+      comment = self.get_object()
+      if self.request.user == comment.user:
+        return True
+      return False
+
+
