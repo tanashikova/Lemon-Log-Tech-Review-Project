@@ -12,19 +12,28 @@
           <p>Description: {{ review.description }}</p>
           <p>Manufacturing Year: {{ review.rating }}</p>
           {% comment %} comment section {% endcomment %}
+          <hr>
           <div class="col-md-12">
             {% with comments.count as total_comments %}
             <h3>
               {{total_commnets}} comment{{total_comments|pluralize}}
+              <button class = "btn btn-outline-info" ><a href="" data-toggle="modal" data-target = "#Comment">Add Comment</a></button>
             </h3>
             {% endwith %}
             {% for comment in comments%}
             Comment {{forloop.comment}} by {{comment.user}} on {{comment.comment_date}}
             {{comment.content|linebreaks}}
+            <a href="{% url 'edit' review.id comment.id %}">Edit</a>
+                  </div>
+                </div>
+              </div>  
+            </div>
+            {% comment %} <a href="{% url 'delete' review.id comment.id %}"> Delete</a> {% endcomment %}
+            <hr>
             {% empty %}
             <p>Be the first who comments on this review</p>
             {% endfor %}
-          <button class = "btn btn-outline-info" ><a href="" data-toggle="modal" data-target = "#Comment">Add Comment</a></button>
+            <hr>
           {% comment %} comment ends here {% endcomment %}
           <div class="modal" tabindex="-1" role="dialog" id="Comment">
               <div class="modal-dialog" role="document">
@@ -38,7 +47,7 @@
                   <div class="modal-body">
                     <div class="container"> 
                               <h2>Add a new comment</h2>
-                              <form action={% url 'review_detail' review.id%} method="post">
+                              <form action={% url 'review_detail' review.id %} method="post">
                                 {{ comment_form.as_p }}
                                 {% csrf_token %}
                                 <p><input type="submit" value="Add comment"></p>
