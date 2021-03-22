@@ -7,7 +7,7 @@ from pyuploadcare.dj.models import ImageField
 class Review(models.Model):
     title = models.CharField(max_length=50)
     product = models.CharField(max_length=35)
-    description = models.CharField(max_length=150)
+    description = models.CharField(max_length=700)
     rating = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     slug = models.SlugField(max_length=300, unique_for_date='publish', null=True, blank=True)
@@ -35,7 +35,7 @@ class Comment(models.Model):
     status = models.BooleanField(default=True)
 
     class Meta:
-        ordering = ('comment_date',)
+        ordering = ('-comment_date',)
 
 
     def __str__(self):
