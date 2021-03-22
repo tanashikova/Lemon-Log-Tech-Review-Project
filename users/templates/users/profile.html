@@ -13,17 +13,6 @@
           {% csrf_token %}
           <fieldset class="form-group">
               <legend class="border-bottom mb-4">Profile Info</legend>
-              {% comment %} {% for photo in profile.photo_set.all %}
-              <img class="responsive-img card-panel" src="{{photo.url}}">
-              {% empty %}
-              <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-              {% endfor %}
-              <form action="{% url 'add_photo' profile.id %}" enctype="multipart/form-data" method="POST" class="card-panel">
-              {% csrf_token %} {% endcomment %}
-                <input type="file" name="photo-file">
-              <br><br>
-                <input type="submit" class="btn" value="Upload Photo">
-              </form>
               {{ user_form|crispy }}
               {{ profile_form|crispy }}
           </fieldset>
@@ -31,21 +20,16 @@
               <button class="btn btn-outline-info" type="submit">Update</button>
           </div>
       </form>
-      {% if user == comment.user %}
-      {% for comment in comments %}
-        <article class="media content-section">
-          <img class="rounded-circle article-img" src="{{ comment.user.profile.image.url }}">
-          <div class="media-body">
-            <div class="article-metadata">
-              <a class="mr-2" href="#">{{ comment.user }}</a>
-              <small class="text-muted">{{ comment.comment_date }}</small>
-            </div>
-            <h2><a class="article-title" href="#">{{ comment.title }}</a></h2>
-            <p class="article-content">{{ comment.content }}</p>
-          </div>
-        </article>
-    {% endfor %}
+      {% if user == comment_user%}
+        {% for comment in comments%}
+          Comment {{forloop.comment}} by {{comment.user}} on {{comment.comment_date}} {{comment.title|linebreaks}}
+          {{comment.content|linebreaks}}
+         {% endfor %}
     {% endif %}
     </div>
-    
 {% endblock content %}
+
+
+
+
+
