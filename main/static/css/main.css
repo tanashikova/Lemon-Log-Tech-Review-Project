@@ -1,0 +1,179 @@
+body {
+    background: #f7fa43;
+    color: #333333;
+    margin-top: 5rem;
+    font-family: 'Ranchers', cursive;
+    font-size:larger;
+    justify-content: center;
+    align-items:center;
+    text-align: center;
+    padding-top:20px;
+  }
+  
+h1, h2, h3, h4, h5, h6 {
+    color: #444444;
+  }
+  
+ul {
+    /* margin: 0; */
+  }
+  
+.fixed-top{
+    background-color: #fdd835;
+  }
+  
+.site-header .navbar-nav .nav-link {
+    color: #292727;
+  }
+  
+.site-header .navbar-nav .nav-link:hover {
+    color: #292727;
+  }
+  
+.site-header .navbar-nav .nav-link.active {
+    font-weight: 500;
+  }
+  
+.content-section {
+    background: #c1c2b1;
+    padding: 10px 20px;
+    border: 3px solid #dddddd;
+    border-radius: 3px;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  
+.article-title {
+    color: #444444;
+  }
+  
+a.article-title:hover {
+    color: #428bca;
+    text-decoration: none;
+  }
+  
+.article-content {
+    white-space: pre-line;
+  }
+  
+.article-img {
+    height: 65px;
+    width: 65px;
+    margin-right: 16px;
+  }
+  
+.article-metadata {
+    padding-bottom: 1px;
+    margin-bottom: 4px;
+    border-bottom: 1px solid #e3e3e3
+  }
+  
+.article-metadata a:hover {
+    color: #333;
+    text-decoration: none;
+  }
+  
+.article-svg {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+.account-img {
+    height: 125px;
+    width: 125px;
+    margin-right: 20px;
+    margin-bottom: 16px;
+  }
+  
+.account-heading {
+    font-size: 2.5rem;
+  }
+.btn-outline-info {
+  background-color:#fdd835;
+  border: none;
+  color:black
+}
+  .page-footer {
+    padding-top: 0;
+    text-align: right;
+    background-color:#fdd835;
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+  }
+
+  .btn{
+    background:rgb(252, 181, 4);
+    width:200px;
+    border: solid rgb(233, 247, 156) 3px;
+  }
+
+  /* #logo {
+    font-size: 27px;
+    font-weight: 900;
+    font-weight: bolder;
+    color: brown;
+  } */
+ img#logo {
+    max-height: 125px;
+    max-width: 125px;
+    /* padding-right: 20px; */
+  }
+
+
+  form input {
+    max-width: 275px;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    border-radius: solid orange 3px;
+  }
+  fieldset {
+    display:flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+  }
+  
+  p {
+    max-width: 333px;
+  }
+
+  span {
+    justify-content: center; 
+    align-items: center;
+    text-align: center;
+  }
+
+  .card {
+    background-color: rgb(245, 245, 216);
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 500px;
+    height: 500px;
+    margin: auto 0;
+  }
+
+  .image {
+    height: 150px;
+    width: 150px;
+  }
+
+  a {
+    color: rgb(64, 35, 250);
+  }
+
+  button {
+    max-width: 275px;
+    justify-content: center;
+    text-align: center;
+    border-radius: solid orange 3px;
+  }
+
+footer {
+  position: fixed;
+  bottom: 0px;
+}
