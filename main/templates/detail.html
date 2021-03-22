@@ -7,12 +7,14 @@
 
 <div class="card">
   <div class="card-content">
-    {% for photo in review.photo_set.all %}
-    <img class="responsive-img card-panel" src="{{review.image}}">
+    {% comment %} {% for photo in review.photo_set.all %} {% endcomment %}
+    <div class="card-image">
+    <img class="image" src="{{review.image}}">
+    </div>
    <span class="card-title">{{ review.title }}</span>
-    {% empty %}
-      <div class="card-panel teal-text center-align">No Photos Uploaded</div>
-    {% endfor %}
+    {% comment %} {% empty %} {% endcomment %}
+      {% comment %} <div class="card-panel teal-text center-align">No Photos Uploaded</div> {% endcomment %}
+    {% comment %} {% endfor %} {% endcomment %}
           <p>Product: {{ review.product }}</p>
           <p>Description: {{ review.description }}</p>
           <p>Rating: {{ review.rating }}</p>
