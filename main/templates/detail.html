@@ -8,7 +8,7 @@
 <div class="card">
   <div class="card-content">
     {% for photo in review.photo_set.all %}
-    {% comment %} <img class="responsive-img card-panel" src="{{review.image}}"> {% endcomment %}
+    <img class="responsive-img card-panel" src="{{review.image}}">
    <span class="card-title">{{ review.title }}</span>
     {% empty %}
       <div class="card-panel teal-text center-align">No Photos Uploaded</div>
@@ -18,7 +18,7 @@
           <p>Rating: {{ review.rating }}</p>
           </div>
           </div>
-          {% comment %} comments section {% endcomment %}
+          {% comment %} comments section starts {% endcomment %}
           <hr>
           <div class="col-md-12">
             {% with comments.count as total_comments %}
@@ -49,9 +49,9 @@
                       </div>
                     </div>  
                   </div>
-            {% comment %} adding comment ends {% endcomment %}
+            {% comment %} adding comment ends here {% endcomment %}
             {% endwith %}
-            {% comment %} list of comments starts {% endcomment %}
+            {% comment %} list of comments starts here {% endcomment %}
             {% for comment in comments%}
             Comment {{forloop.comment}} by {{comment.user}} on {{comment.comment_date}} {{comment.title|linebreaks}}
             {{comment.content|linebreaks}}
@@ -90,6 +90,6 @@
             <p>Be the first who comments on this review</p>
             {% endfor %}
             <hr>
-          {% comment %} comment ends here {% endcomment %}
+          {% comment %} comment section ends here {% endcomment %}
     
 {% endblock %}

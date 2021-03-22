@@ -5,29 +5,26 @@
 <h3>Here's a list of the latest reviews!</h3>
 
 {% for review in reviews %}
-  {% comment %} <div class="row"> {% endcomment %}
       <div class="card">
         <div class="card-image">
           {% if review.image %}
           <img src="{{ review.image }}">
           {% endif %}
-        </div>
+      </div>
         <div class="card-content">
-          <span class="card-title">{{ review.title }}</span>
-          <p>Brand: {{ review.product }}</p>
-          <p>Description: {{ review.description }}</p>
-          <p>Rating: {{ review.rating }}</p>
-        </div> 
-        <div class="card-action">
-        </div>
-        <form action="{% url 'review_detail' review.id %}" method="GET">
-          <button>
-            View the full review!
-          </button>
-        </form>
-
-    </div>
-      {% comment %} </div> {% endcomment %}
+            <span class="card-title">{{ review.title }}</span>
+            <p>Brand: {{ review.product }}</p>
+            <p>Description: {{ review.description }}</p>
+            <p>Rating: {{ review.rating }}</p>
+          </div> 
+          <div class="card-action">
+          </div>
+          <form action="{% url 'review_detail' review.id %}" method="GET">
+            <button>
+              View the full review!
+            </button>
+          </form>
+      </div>
 {% endfor %}
 
 {% endblock %}

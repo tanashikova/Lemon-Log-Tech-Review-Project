@@ -20,12 +20,6 @@
               <button class="btn btn-outline-info" type="submit">Update</button>
           </div>
       </form>
-      {% if user == comment_user%}
-        {% for comment in comments%}
-          Comment {{forloop.comment}} by {{comment.user}} on {{comment.comment_date}} {{comment.title|linebreaks}}
-          {{comment.content|linebreaks}}
-         {% endfor %}
-    {% endif %}
     </div>
 {% endblock content %}
 
