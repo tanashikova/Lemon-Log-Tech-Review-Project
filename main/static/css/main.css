@@ -14,10 +14,6 @@ h1, h2, h3, h4, h5, h6 {
     color: #444444;
   }
   
-ul {
-    /* margin: 0; */
-  }
-  
 .fixed-top{
     background-color: #fdd835;
   }
@@ -129,13 +125,13 @@ a.article-title:hover {
     text-align: center;
     border-radius: solid orange 3px;
   }
-  fieldset {
+  /* fieldset {
     display:flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     text-align: center;
-  }
+  } */
   
   p {
     max-width: 333px;
@@ -176,4 +172,23 @@ a.article-title:hover {
 footer {
   position: fixed;
   bottom: 0px;
+}
+
+
+@media only screen and (max-width: 400px){
+  body {
+    padding-top: 50px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  img#logo {
+    max-height: 25px;
+    max-width: 25px;
+    /* padding-right: 20px; */
+  }
+}
+
+.navbar-toggler {
+  background-color: greenyellow;
 }
