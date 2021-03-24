@@ -18,7 +18,7 @@ h1, h2, h3, h4, h5, h6 {
     background-color: #fdd835;
   }
   
-.site-header .navbar-nav .nav-link {
+/* .site-header .navbar-nav .nav-link {
     color: #292727;
   }
   
@@ -28,7 +28,7 @@ h1, h2, h3, h4, h5, h6 {
   
 .site-header .navbar-nav .nav-link.active {
     font-weight: 500;
-  }
+  } */
   
 .content-section {
     background: #c1c2b1;
@@ -174,8 +174,14 @@ footer {
   bottom: 0px;
 }
 
+@media (max-width: 767px) {
+  .navbar-top .navbar-collapse {
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+}
 
-@media only screen and (max-width: 400px){
+@media only screen and (max-width: 375px){
   body {
     padding-top: 50px;
     display: flex;
@@ -187,8 +193,16 @@ footer {
     max-width: 25px;
     /* padding-right: 20px; */
   }
+  @media (max-width: 356px) {
+  .navbar-top .navbar-collapse {
+    margin-top: 20px;
+    margin-bottom: -20px;
+  }
+}
 }
 
 .navbar-toggler {
-  background-color: greenyellow;
+  background-color: rgb(229, 250, 198);
+  color:indianred;
+  z-index: auto;
 }
